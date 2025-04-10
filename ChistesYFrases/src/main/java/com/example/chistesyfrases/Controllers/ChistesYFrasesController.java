@@ -49,7 +49,7 @@ public class ChistesYFrasesController {
         String property = sort[0];
         String direction = sort[1].toLowerCase();
 
-        List<String> validDirections = Arrays.asList("asc ", "desc");
+        List<String> validDirections = Arrays.asList("asc", "desc");
         if (!validDirections.contains(direction)) {
             throw new IllegalArgumentException("Orden incorrecto usa 'asc' o 'desc'.");
         }
