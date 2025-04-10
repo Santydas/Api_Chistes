@@ -51,7 +51,7 @@ public class ChistesYFrasesController {
 
         List<String> validDirections = Arrays.asList("asc", "desc");
         if (!validDirections.contains(direction)) {
-            throw new IllegalArgumentException("Orden incorrecto usa 'asc' o 'desc'.");
+            throw new IllegalArgumentException("Orden incorrecto usa "asc" o "desc".");
         }
         return new Sort.Order(Sort.Direction.fromString(direction), property).getDirection();
     }
