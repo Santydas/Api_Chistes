@@ -35,7 +35,7 @@ public class ChistesYFrasesEntity {
     public String toString() {
         return "ChistesYFrasesEntity{" +
                 "id=" + id +
-                "chisteOFrase" + ChisteOFrase +
+                ", chisteOFrase='" + ChisteOFrase + '\'' +
                 '}';
     }
 
@@ -47,8 +47,8 @@ public class ChistesYFrasesEntity {
         return ChisteOFrase;
     }
 
-    public void setChisteOFrase(String ChisteOFrase) {
-        this.ChisteOFrase = ChisteOFrase;
+    public void setChisteOFrase(String chisteOFrase) {
+        this.ChisteOFrase = chisteOFrase;
     }
 
 }

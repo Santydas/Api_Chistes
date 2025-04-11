@@ -1,7 +1,7 @@
 package com.example.chistesyfrases.Services;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -18,13 +18,13 @@ import java.util.*;
 public class ChistesYFrasesService {
 
     private final ChistesYFrasesRepository chistesYFrasesRepository;
-    @Autowired
+
     public ChistesYFrasesService(ChistesYFrasesRepository chistesYFrasesRepository) {
 
         this.chistesYFrasesRepository = chistesYFrasesRepository;
     }
 
-    public ResponseEntity<?> getAllchistesYFrases(Pageable pageable) {
+    public ResponseEntity<?> getAllchistes(Pageable pageable) {
         Page<ChistesYFrasesEntity> ChistesYFrases = chistesYFrasesRepository.findAll(pageable);
         return getResponseEntity(ChistesYFrases);
     }

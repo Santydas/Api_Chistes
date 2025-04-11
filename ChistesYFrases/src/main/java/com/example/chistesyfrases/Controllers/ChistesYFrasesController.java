@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 @RestController
 @RequestMapping("/chistesyfrases")
@@ -23,8 +23,7 @@ public class ChistesYFrasesController {
 
     private final ChistesYFrasesService chistesYFrasesService;
 
-    @Autowired
-    public ChistesYFrasesController(ChistesYFrasesService chistesYFrasesService) {
+        public ChistesYFrasesController(ChistesYFrasesService chistesYFrasesService) {
         this.chistesYFrasesService = chistesYFrasesService;
     }
 
@@ -35,13 +34,13 @@ public class ChistesYFrasesController {
     @RequestParam(defaultValue = "ChisteOFrase,asc") String[] sort){
         try{
             Pageable pageable = PageRequest.of(page, size, Sort.by(parseSort(sort)));
-            return chistesYFrasesService.getAllchistesYFrases(pageable);
+            return chistesYFrasesService.getAllchistes(pageable);
         }catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Orden incorrecto usa 'asc' o 'desc'.");
         }
     }
 
-    private Sort.Direction parseSort(String[] sort) {
+    private Sort.Order parseSort(String[] sort) {
         if (sort.length < 2) {
             throw new IllegalArgumentException("El parámetro de ordenación debe tener tanto campo como dirección");
         }
@@ -51,14 +50,25 @@ public class ChistesYFrasesController {
 
         List<String> validDirections = Arrays.asList("asc", "desc");
         if (!validDirections.contains(direction)) {
-            throw new IllegalArgumentException("Orden incorrecto usa "asc" o "desc".");
+            throw new IllegalArgumentException("Orden incorrecto usa 'asc' o 'desc'.");
         }
-        return new Sort.Order(Sort.Direction.fromString(direction), property).getDirection();
+        return new Sort.Order(Sort.Direction.fromString(direction), property);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getChistesYFrasesById(@PathVariable UUID id){
         return chistesYFrasesService.getChistesYFrasesById(id);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> getChistesBychistes(
+            @RequestParam String ChisteOFrase,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "Chiste,asc") String[] sort) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(parseSort(sort)));
+        return chistesYFrasesService.getChistesYFrasesByChiste(ChisteOFrase, pageable);
     }
 
     @PostMapping
