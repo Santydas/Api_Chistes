@@ -60,16 +60,7 @@ public class ChistesYFrasesController {
         return chistesYFrasesService.getChistesYFrasesById(id);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<?> getChistesBychistes(
-            @RequestParam String ChisteOFrase,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "Chiste,asc") String[] sort) {
-
-        Pageable pageable = PageRequest.of(page, size, Sort.by(parseSort(sort)));
-        return chistesYFrasesService.getChistesYFrasesByChiste(ChisteOFrase, pageable);
-    }
+  
 
     @PostMapping
     public ResponseEntity<?> insertChiste(@Valid @RequestBody ChistesYFrasesEntity chistesYFrasesEntity){

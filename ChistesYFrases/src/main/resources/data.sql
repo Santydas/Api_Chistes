@@ -1,4 +1,4 @@
-MERGE INTO ChisteEntity (id, ChisteOfrase)
+MERGE INTO ChisteEntity (id, ChisteOFrase)
     KEY(id)
     VALUES
     ('550e8400-e29b-41d4-a716-446655440000', '¿Por qué el libro de matemáticas estaba triste? Porque tenía demasiados problemas.'),
